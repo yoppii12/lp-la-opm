@@ -63,6 +63,30 @@ npm run start
 npm run lint
 ```
 
+## Netlify へのデプロイ
+
+### 初回セットアップ
+
+1. [Netlify](https://app.netlify.com/) にログイン
+2. **Add new site → Import an existing project** を選択
+3. **GitHub** を選択し、`yoppii12/lp-la-opm` を検索して選択
+4. ビルド設定は `netlify.toml` が自動で読み込まれるためそのまま **Deploy** をクリック
+
+デプロイ完了後、Netlify が発行した URL でサイトが公開されます。
+
+### 本番URL の設定（独自ドメイン取得後）
+
+1. Netlify 管理画面 → **Domain management → Add a domain**
+2. 独自ドメインを追加・DNS設定を行う
+3. `src/lib/constants.ts` の `SITE.baseUrl` を本番 URL に更新してプッシュ
+
+### 継続的デプロイ
+
+`main` ブランチにプッシュすると Netlify が自動でビルド・デプロイします。  
+プルリクエストを作成するとプレビュー URL が自動生成されます。
+
+---
+
 ## 技術スタック
 
 - [Next.js 16](https://nextjs.org/)

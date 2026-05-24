@@ -38,6 +38,18 @@
 - [ ] `src/lib/constants.ts` の `SITE.baseUrl` を本番URLに変更
 - [ ] `src/app/robots.ts` / `src/app/sitemap.ts` の本番URL反映確認
 
+### `.placeholder-image` クラスの削除
+
+画像を実素材に差し替えた後、`src/app/globals.css` の `.placeholder-image` クラスは不要になる。
+各コンポーネントで `placeholder-image` を使用している箇所も合わせて削除する。
+
+- [ ] `src/app/globals.css` から `.placeholder-image` スタイルを削除
+- [ ] 各コンポーネントの `className="placeholder-image ..."` を実際の `<Image>` タグに差し替え
+
+**依存:** 画像差し替えタスクの完了後に実施
+
+---
+
 ### 静的エクスポートへの移行（将来案）
 
 現在は Netlify Next.js Runtime で運用しているが、純粋CDN配信に切り替えることで配信速度向上・コスト削減が見込める。
