@@ -1,36 +1,95 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# lp-la-opm
 
-## Getting Started
+order-point-management（ARマーカー在庫管理システム）のランディングページ。
 
-First, run the development server:
+Next.js 16 + Tailwind CSS 4 で構築。
+
+## 前提条件
+
+| ツール | 推奨バージョン |
+|--------|----------------|
+| Node.js | 20.x 以上（18.18.x 以上でも可） |
+| npm | 9.x 以上 |
+
+Node.js のインストールは [nodejs.org](https://nodejs.org/) または `nvm` を利用してください。
+
+```bash
+# nvm を使う場合
+nvm install 20
+nvm use 20
+
+# バージョン確認
+node -v
+npm -v
+```
+
+## セットアップ
+
+### 1. リポジトリをクローン
+
+```bash
+git clone https://github.com/yoppii12/lp-la-opm.git
+cd lp-la-opm
+```
+
+### 2. 依存パッケージをインストール
+
+```bash
+npm install
+```
+
+### 3. 開発サーバーを起動
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+ブラウザで [http://localhost:3000](http://localhost:3000) を開くと確認できます。  
+ファイルを編集すると自動でリロードされます。
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## コマンド一覧
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+# 開発サーバー起動（ホットリロード有効）
+npm run dev
 
-## Learn More
+# 本番用ビルド
+npm run build
 
-To learn more about Next.js, take a look at the following resources:
+# 本番サーバー起動（build 後に実行）
+npm run start
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+# Lint チェック
+npm run lint
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Netlify へのデプロイ
 
-## Deploy on Vercel
+### 初回セットアップ
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. [Netlify](https://app.netlify.com/) にログイン
+2. **Add new site → Import an existing project** を選択
+3. **GitHub** を選択し、`yoppii12/lp-la-opm` を検索して選択
+4. ビルド設定は `netlify.toml` が自動で読み込まれるためそのまま **Deploy** をクリック
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+デプロイ完了後、Netlify が発行した URL でサイトが公開されます。
+
+### 本番URL の設定（独自ドメイン取得後）
+
+1. Netlify 管理画面 → **Domain management → Add a domain**
+2. 独自ドメインを追加・DNS設定を行う
+3. `src/lib/constants.ts` の `SITE.baseUrl` を本番 URL に更新してプッシュ
+
+### 継続的デプロイ
+
+`main` ブランチにプッシュすると Netlify が自動でビルド・デプロイします。  
+プルリクエストを作成するとプレビュー URL が自動生成されます。
+
+---
+
+## 技術スタック
+
+- [Next.js 16](https://nextjs.org/)
+- [React 19](https://react.dev/)
+- [Tailwind CSS 4](https://tailwindcss.com/)
+- TypeScript
