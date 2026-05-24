@@ -38,6 +38,15 @@
 - [ ] `src/lib/constants.ts` の `SITE.baseUrl` を本番URLに変更
 - [ ] `src/app/robots.ts` / `src/app/sitemap.ts` の本番URL反映確認
 
+### 静的エクスポートへの移行（将来案）
+
+現在は Netlify Next.js Runtime で運用しているが、純粋CDN配信に切り替えることで配信速度向上・コスト削減が見込める。
+
+- [ ] `src/app/opengraph-image.tsx` の edge runtime を廃止し、静的PNGファイルに差し替え
+- [ ] `next.config.ts` に `output: 'export'` を追加
+- [ ] セキュリティヘッダーを `next.config.ts` の `headers()` から `netlify.toml` の `[[headers]]` に移行
+- [ ] `netlify.toml` の `publish` を `.next` から `out` に変更
+
 ---
 
 ## 完了済み
